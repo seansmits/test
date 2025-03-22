@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sean Smits' Projects | Portfolio Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            /* Colors */
+            --primary-color: #2F80ED;
+            --secondary-color: #333333;
+            --accent-color: #EB5757;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --gradient-start: rgba(47, 128, 237, 0.05);
+            --gradient-end: rgba(235, 87, 87, 0.05);
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Typography */
+            --font-family: 'Inter', sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-md: 1.25rem;
+            --font-size-lg: 1.5rem;
+            --font-size-xl: 2rem;
+            --font-size-xxl: 3rem;
+            
+            /* Transitions */
+            --transition-fast: 200ms ease;
+            --transition-normal: 300ms ease;
+            --transition-slow: 500ms ease;
+            
+            /* Borders */
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 16px;
+        }
+        
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0, 0, 0, 0.3);
+            --secondary-color: #e0e0e0;
+            --gradient-start: rgba(47, 128, 237, 0.1);
+            --gradient-end: rgba(235, 87, 87, 0.1);
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            background-attachment: fixed;
+            line-height: 1.6;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            min-height: 100vh;
+            background-color: var(--bg-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        button {
+            cursor: pointer;
+            font-family: var(--font-family);
+        }
+        
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        /* Header */
+        header {
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: background-color var(--transition-normal);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: var(--spacing-md);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(47, 128, 237, 0.1);
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-size-lg);
+            padding: var(--spacing-xs);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-size-md);
+            padding: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(47, 128, 237, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: var(--font-size-xxl);
+            margin-bottom: var(--spacing-md);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-lg);
+            max-width: 700px;
+            margin: 0 auto var(--spacing-lg);
+            color: var(--secondary-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Filters Section */
+        .filters {
+            padding: var(--spacing-md) 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            justify-content: center;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+            min-width: 250px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid rgba(47, 128, 237, 0.2);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-base);
+            transition: border-color var(--transition-fast);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: var(--spacing-sm);
+            transform: translateY(-50%);
+            color: var(--secondary-color);
+            pointer-events: none;
+        }
+        
+        .tag-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+        
+        .tag-filter {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            font-size: var(--font-size-sm);
+            background-color: rgba(47, 128, 237, 0.1);
+            border: none;
+            color: var(--primary-color);
+            transition: background-color var(--transition-fast), color var(--transition-fast);
+        }
+        
+        .tag-filter:hover {
+            background-color: rgba(47, 128, 237, 0.2);
+        }
+        
+        .tag-filter.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .sort-container {
+            position: relative;
+            min-width: 150px;
+        }
+        
+        .sort-select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 2px solid rgba(47, 128, 237, 0.2);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-base);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            appearance: none;
+        }
+        
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .sort-icon {
+            position: absolute;
+            top: 50%;
+            right: var(--spacing-sm);
+            transform: translateY(-50%);
+            color: var(--secondary-color);
+            pointer-events: none;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* Project Card */
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .project-card.visible {
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--card-shadow);
+        }
+        
+        .project-thumbnail {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+        }
+        
+        .project-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .project-card:hover .project-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: var(--spacing-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .project-description {
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .project-date {
+            font-size: var(--font-size-sm);
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+            margin-top: auto;
+        }
+        
+        .tag {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            font-size: var(--font-size-sm);
+            background-color: rgba(47, 128, 237, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--spacing-sm);
+        }
+        
+        .visit-btn {
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 500;
+            transition: background-color var(--transition-fast);
+            text-align: center;
+        }
+        
+        .visit-btn:hover {
+            background-color: #1C6FD6;
+            color: white;
+        }
+        
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(47, 128, 237, 0.1);
+            border: none;
+            color: var(--primary-color);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .share-btn:hover {
+            background-color: rgba(47, 128, 237, 0.2);
+        }
+        
+        .project-views {
+            font-size: var(--font-size-sm);
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            display: none;
+        }
+        
+        .empty-state-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .empty-state-text {
+            font-size: var(--font-size-lg);
+            color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-color);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-xl);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        .footer-section h3 {
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(47, 128, 237, 0.1);
+            color: var(--primary-color);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--spacing-md);
+            right: var(--spacing-md);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-normal), visibility var(--transition-normal);
+            z-index: 100;
+            border: none;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(47, 128, 237, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--secondary-color);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-sm);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transition: transform var(--transition-normal), opacity var(--transition-normal);
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        
+        /* Responsive Styles */
+        @media (min-width: 600px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header-container {
+                position: relative;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-color);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                flex-direction: column;
+                padding: var(--spacing-md);
+                transform-origin: top;
+                transform: scaleY(0);
+                opacity: 0;
+                visibility: hidden;
+                transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
+            }
+            
+            .nav-menu.active {
+                transform: scaleY(1);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-item {
+                margin: var(--spacing-xs) 0;
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-container, .sort-container, .tag-filters {
+                width: 100%;
+                margin-bottom: var(--spacing-sm);
+            }
+            
+            .hero-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--font-size-md);
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">seansmits.com</div>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Sean Smits' Projects</h1>
+            <p class="hero-subtitle">A showcase of my creative work and technical skills across various domains including web development, mobile applications, and design.</p>
+        </div>
+    </section>
+    
+    <!-- Filters Section -->
+    <section class="container">
+        <div class="filters">
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-input" placeholder="Search projects..." aria-label="Search projects">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+            </div>
+            
+            <div class="tag-filters" id="tag-filters">
+                <!-- Tags will be populated dynamically -->
+                <button class="tag-filter active" data-tag="all">All</button>
+            </div>
+            
+            <div class="sort-container">
+                <select class="sort-select" id="sort-select" aria-label="Sort projects">
+                    <option value="date-desc">Newest First</option>
+                    <option value="date-asc">Oldest First</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                </select>
+                <span class="sort-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+        </div>
+        
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-grid"></div>
+        
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state">
+            <div class="empty-state-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <p class="empty-state-text">No projects match your search. Try different keywords or filters.</p>
+        </div>
+    </section>
+    
+    <!-- Footer / Contact Section -->
+    <footer id="contact">
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>Sean Smits is a passionate developer focused on creating beautiful, functional, and accessible web experiences. With expertise in modern front-end technologies and a keen eye for design.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:hello@seansmits.com">hello@seansmits.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Francisco, CA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Dribbble">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2025 Sean Smits. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+    
+    <script>
+        // Sample Project Data
+        const projects = [
+            {
+                title: "E-commerce Platform",
+                url: "https://store.example.com",
+                description: "Full-stack online shopping platform with payment integration, inventory management, and customer accounts.",
+                tags: ["React", "Node.js", "MongoDB"],
+                date: "2024-03-15",
+                thumbnail: "/api/placeholder/600/400",
+                views: 1243
+            },
+            {
+                title: "Fitness Tracker App",
+                url: "https://fitness.example.com",
+                description: "Mobile application for tracking workouts, nutrition, and progress with social sharing features.",
+                tags: ["JavaScript", "Firebase", "CSS"],
+                date: "2024-02-20",
+                thumbnail: "/api/placeholder/600/400",
+                views: 876
+            },
+            {
+                title: "Weather Dashboard",
+                url: "https://weather.example.com",
+                description: "Interactive weather forecasting tool with location-based services and historical data visualization.",
+                tags: ["JavaScript", "API", "CSS"],
+                date: "2024-01-10",
+                thumbnail: "/api/placeholder/600/400",
+                views: 543
+            },
+            {
+                title: "Portfolio CMS",
+                url: "https://cms.example.com",
+                description: "Content management system designed specifically for creative professionals to showcase their work.",
+                tags: ["React", "Node.js", "MongoDB"],
+                date: "2023-12-05",
+                thumbnail: "/api/placeholder/600/400",
+                views: 982
+            },
+            {
+                title: "Recipe Sharing Platform",
+                url: "https://recipes.example.com",
+                description: "Community-driven recipe sharing website with rating system and ingredient-based search functionality.",
+                tags: ["HTML", "CSS", "JavaScript"],
+                date: "2023-11-18",
+                thumbnail: "/api/placeholder/600/400",
+                views: 1568
+            },
+            {
+                title: "Podcast Streaming App",
+                url: "https://podcast.example.com",
+                description: "Audio streaming application with personalized recommendations and offline listening capabilities.",
+                tags: ["React", "Node.js", "MongoDB"],
+                date: "2023-10-22",
+                thumbnail: "/api/placeholder/600/400",
+                views: 765
+            }
+        ];
+        
+        // DOM Elements
+        const projectsGrid = document.getElementById('projects-grid');
+        const searchInput = document.getElementById('search-input');
+        const tagFilters = document.getElementById('tag-filters');
+        const sortSelect = document.getElementById('sort-select');
+        const backToTopButton = document.getElementById('back-to-top');
+        const emptyState = document.getElementById('empty-state');
+        const loading = document.getElementById('loading');
+        const toast = document.getElementById('toast');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        // State Variables
+        let activeTagFilter = 'all';
+        let currentSort = 'date-desc';
+        let darkMode = localStorage.getItem('darkMode') === 'true';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            populateTagFilters();
+            renderProjects();
+            setupEventListeners();
+            initializeLazyLoading();
+        });
+        
+        // Theme Management
+        function initializeTheme() {
+            if (darkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+        
+        function toggleTheme() {
+            darkMode = !darkMode;
+            localStorage.setItem('darkMode', darkMode);
+            
+            if (darkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+        
+        // Tag Filters
+        function populateTagFilters() {
+            // Get unique tags
+            const uniqueTags = [...new Set(projects.flatMap(project => project.tags))].sort();
+            
+            // Add tag filters
+            uniqueTags.forEach(tag => {
+                const button = document.createElement('button');
+                button.className = 'tag-filter';
+                button.setAttribute('data-tag', tag);
+                button.textContent = tag;
+                tagFilters.appendChild(button);
+            });
+        }
+        
+        // Events
+        function setupEventListeners() {
+            // Search input
+            searchInput.addEventListener('input', debounce(() => {
+                renderProjects();
+            }, 300));
+            
+            // Tag filters
+            tagFilters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('tag-filter')) {
+                    const tag = e.target.getAttribute('data-tag');
+                    
+                    // Update active tag
+                    document.querySelectorAll('.tag-filter').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                    
+                    activeTagFilter = tag;
+                    renderProjects();
+                }
+            });
+            
+            // Sort select
+            sortSelect.addEventListener('change', () => {
+                currentSort = sortSelect.value;
+                renderProjects();
+            });
+            
+            // Back to top button
+            window.addEventListener('scroll', debounce(() => {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            }, 100));
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const expanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenuToggle.innerHTML = expanded ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+            });
+            
+            // Theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Card click event (for visit or share)
+            projectsGrid.addEventListener('click', (e) => {
+                // Handle share button click
+                if (e.target.closest('.share-btn')) {
+                    e.preventDefault();
+                    const card = e.target.closest('.project-card');
+                    const projectUrl = card.getAttribute('data-url');
+                    copyToClipboard(projectUrl);
+                }
+                
+                // Track views (only for actual visit clicks)
+                if (e.target.closest('.visit-btn')) {
+                    const card = e.target.closest('.project-card');
+                    const projectId = card.getAttribute('data-id');
+                    incrementViews(projectId);
+                }
+            });
+        }
+        
+        // Project Rendering
+        function renderProjects() {
+            showLoading();
+            
+            // Clear existing projects
+            projectsGrid.innerHTML = '';
+            
+            // Filter projects
+            let filteredProjects = filterProjects();
+            
+            // Sort projects
+            filteredProjects = sortProjects(filteredProjects);
+            
+            // Check if no projects
+            if (filteredProjects.length === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+                
+                // Render projects
+                filteredProjects.forEach((project, index) => {
+                    const projectCard = createProjectCard(project, index);
+                    projectsGrid.appendChild(projectCard);
+                });
+                
+                // Initialize scroll animation for the newly added cards
+                initializeScrollAnimation();
+            }
+            
+            hideLoading();
+        }
+        
+        function filterProjects() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            return projects.filter(project => {
+                // Filter by search term
+                const matchesSearch = 
+                    project.title.toLowerCase().includes(searchTerm) || 
+                    project.description.toLowerCase().includes(searchTerm);
+                
+                // Filter by tag
+                const matchesTag = 
+                    activeTagFilter === 'all' || 
+                    project.tags.includes(activeTagFilter);
+                
+                return matchesSearch && matchesTag;
+            });
+        }
+        
+        function sortProjects(projects) {
+            return [...projects].sort((a, b) => {
+                switch (currentSort) {
+                    case 'date-desc':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'date-asc':
+                        return new Date(a.date) - new Date(b.date);
+                    case 'name-asc':
+                        return a.title.localeCompare(b.title);
+                    case 'name-desc':
+                        return b.title.localeCompare(a.title);
+                    default:
+                        return 0;
+                }
+            });
+        }
+        
+        function createProjectCard(project, index) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.setAttribute('data-id', index);
+            card.setAttribute('data-url', project.url);
+            
+            // Format date
+            const date = new Date(project.date);
+            const formattedDate = date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            
+            card.innerHTML = `
+                <div class="project-thumbnail">
+                    <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">
+                        <a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title}</a>
+                    </h2>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-meta">
+                        <div class="project-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="project-views">
+                            <i class="far fa-eye"></i>
+                            <span>${project.views} views</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="project-footer">
+                        <a href="${project.url}" class="visit-btn" target="_blank" rel="noopener noreferrer">Visit Project</a>
+                        <button class="share-btn" aria-label="Share project link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Utilities
+        function debounce(func, delay) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
+        
+        function showLoading() {
+            loading.style.display = 'block';
+        }
+        
+        function hideLoading() {
+            loading.style.display = 'none';
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showToast('Project URL copied to clipboard!');
+                })
+                .catch(() => {
+                    showToast('Failed to copy URL. Please try again.');
+                });
+        }
+        
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        function incrementViews(projectId) {
+            // In a real application, this would make an API call
+            // For now, we'll just update the local data
+            const projectIndex = parseInt(projectId);
+            if (!isNaN(projectIndex) && projects[projectIndex]) {
+                projects[projectIndex].views++;
+                // Update the view count in the DOM
+                const viewsElement = document.querySelector(`.project-card[data-id="${projectId}"] .project-views span`);
+                if (viewsElement) {
+                    viewsElement.textContent = `${projects[projectIndex].views} views`;
+                }
+            }
+        }
+        
+        // Lazy Loading and Animations
+        function initializeLazyLoading() {
+            if ('IntersectionObserver' in window) {
+                const lazyImageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+                    lazyImageObserver.observe(img);
+                });
+            }
+        }
+        
+        function initializeScrollAnimation() {
+            if ('IntersectionObserver' in window) {
+                const options = {
+                    threshold: 0.1
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, options);
+                
+                document.querySelectorAll('.project-card').forEach((card) => {
+                    observer.observe(card);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                document.querySelectorAll('.project-card').forEach((card) => {
+                    card.classList.add('visible');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
